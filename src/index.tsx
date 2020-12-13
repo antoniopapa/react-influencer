@@ -3,12 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import axios from 'axios';
+import {Provider} from 'react-redux';
+import configureStore from "./redux/configureStore";
+import constants from './constants';
+
+axios.defaults.baseURL = constants.BASE_URL;
+axios.defaults.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+
+const store = configureStore();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <Provider store={store}>
+            <App/>
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

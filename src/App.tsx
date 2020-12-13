@@ -1,26 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Main from "./pages/Main";
+import {BrowserRouter, Route} from "react-router-dom";
+import Login from "./public/Login";
+import Register from "./public/Register";
+import Rankings from "./pages/Rankings";
+import Stats from "./pages/Stats";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <BrowserRouter>
+                <Route exact path={'/'} component={Main}/>
+                <Route path={'/login'} component={Login}/>
+                <Route path={'/register'} component={Register}/>
+                <Route path={'/rankings'} component={Rankings}/>
+                <Route path={'/stats'} component={Stats}/>
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;
